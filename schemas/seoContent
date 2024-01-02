@@ -1,0 +1,84 @@
+// seoContent.js
+import { defineType } from 'sanity';
+
+const openGraphFields = [
+  { name: 'ogLocale', title: 'OG Locale', type: 'string' },
+  { name: 'ogType', title: 'OG Type', type: 'string' },
+  { name: 'ogTitle', title: 'OG Title', type: 'string' },
+  { name: 'ogDescription', title: 'OG Description', type: 'text' },
+  { name: 'ogUrl', title: 'OG URL', type: 'url' },
+  { name: 'ogSite_name', title: 'OG Site Name', type: 'string' },
+  { name: 'ogUpdated_time', title: 'OG Updated Time', type: 'datetime' },
+  { name: 'ogImage', title: 'OG Image', type: 'image' },
+  { name: 'ogImageSecure_url', title: 'OG Image Secure URL', type: 'url' },
+  { name: 'ogImageWidth', title: 'OG Image Width', type: 'number' },
+  { name: 'ogImageHeight', title: 'OG Image Height', type: 'number' },
+  { name: 'ogImageAlt', title: 'OG Image Alt', type: 'string' },
+  { name: 'ogImageType', title: 'OG Image Type', type: 'string' },
+  { name: 'articlePublished_time', title: 'Article Published Time', type: 'datetime' },
+  { name: 'articleModified_time', title: 'Article Modified Time', type: 'datetime' },
+];
+
+const twitterCardFields = [
+  { name: 'twitterCard', title: 'Twitter Card', type: 'string' },
+  { name: 'twitterTitle', title: 'Twitter Title', type: 'string' },
+  { name: 'twitterDescription', title: 'Twitter Description', type: 'text' },
+  { name: 'twitterSite', title: 'Twitter Site', type: 'string' },
+  { name: 'twitterCreator', title: 'Twitter Creator', type: 'string' },
+  { name: 'twitterImage', title: 'Twitter Image', type: 'image' },
+  { name: 'twitterLabel1', title: 'Twitter Label 1', type: 'string' },
+  { name: 'twitterData1', title: 'Twitter Data 1', type: 'string' },
+  { name: 'twitterLabel2', title: 'Twitter Label 2', type: 'string' },
+  { name: 'twitterData2', title: 'Twitter Data 2', type: 'string' },
+];
+
+export default {
+  name: 'seoContent',
+  title: 'SEO Content',
+  type: 'document',
+  fields: [
+    {
+      name: 'path',
+      title: 'Page path',
+      type: 'string',
+      },
+      {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    },
+    {
+      name: 'url',
+      title: 'URL',
+      type: 'url',
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    },
+    {
+      name: 'keywords',
+      title: 'Keywords',
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    {
+      name: 'canonical',
+      title: 'Canonical URL',
+      type: 'url',
+    },
+    {
+      name: 'openGraph',
+      title: 'Open Graph',
+      type: 'object',
+      fields: openGraphFields,
+    },
+    {
+      name: 'twitterCard',
+      title: 'Twitter Card',
+      type: 'object',
+      fields: twitterCardFields,
+    },
+  ],
+};
