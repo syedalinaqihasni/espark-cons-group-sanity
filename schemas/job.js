@@ -19,10 +19,12 @@ export default {
     {
       name: 'detailsDescription',
       title: 'Details Description',
-      description: 'Enter detailed job description',
+      description: 'Enter detailed job description (limit 500 characters)',
       type: 'array',
       of: [{ type: 'block' }],
+      validation: (Rule) => Rule.max(50).warning('Limit the description to 50 characters or less'),
     },
+    
     {
       name: 'link',
       title: 'Link',
