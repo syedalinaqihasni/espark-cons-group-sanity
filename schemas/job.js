@@ -14,17 +14,19 @@ export default {
       name: 'shortDescription',
       title: 'Short Description',
       type: 'text',
-      description: 'Enter a brief description of the job',
+      validation: (Rule) =>
+        Rule.max(100).warning(
+          'Short Description should not exceed 100 characters.'
+        ),
+      description: 'Enter a brief description of the job (max 100 characters)',
     },
     {
       name: 'detailsDescription',
       title: 'Details Description',
-      description: 'Enter detailed job description (limit 500 characters)',
+      description: 'Enter detailed job description',
       type: 'array',
       of: [{ type: 'block' }],
-      validation: (Rule) => Rule.max(50).warning('Limit the description to 50 characters or less'),
     },
-    
     {
       name: 'link',
       title: 'Link',
