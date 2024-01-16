@@ -1,4 +1,22 @@
 // jobs.js
+import client from '../sanityClient';
+
+// Custom validation function for ensuring unique job titles
+function isUniqueJobTitle(jobTitle, { document }) {
+  // Check if there is already a job with the same title
+  return client
+    .fetch('*[_type == "job" && jobTitle == $jobTitle && _id != $id][0]', {
+      jobTitle,
+      id: document._id || '',
+    })
+    .then(existingJob => {
+      if (existingJob) {
+        return 'A job with this title already exists';
+      }
+      return true;
+    });
+}
+
 export default {
   name: 'job',
   title: 'Job',
@@ -8,17 +26,15 @@ export default {
       name: 'jobTitle',
       title: 'Job Title',
       type: 'string',
+      validation: (Rule) =>
+        Rule.required().custom(isUniqueJobTitle),
       description: 'Enter the job title',
     },
     {
       name: 'shortDescription',
       title: 'Short Description',
       type: 'text',
-      validation: (Rule) =>
-        Rule.max(100).warning(
-          'Short Description should not exceed 100 characters.'
-        ),
-      description: 'Enter a brief description of the job (max 100 characters)',
+      description: 'Enter a brief description of the job',
     },
     {
       name: 'detailsDescription',
